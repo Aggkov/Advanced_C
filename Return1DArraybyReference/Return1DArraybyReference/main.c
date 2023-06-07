@@ -10,7 +10,7 @@ void printArr(int arr[], int size);
 
 int main() {
 	int* array = NULL;
-	createArrayByRefV2(&array);
+	createArrayByRef(&array);
 	printArr(array, SIZE);
 	free(array);
 	return 0;
@@ -27,13 +27,14 @@ void createArrayByRefV2(int** ptr) {
 }
 
 void createArrayByRef(int** ptr) {
-	*ptr = malloc(sizeof(int) * SIZE);
-	if (ptr == NULL) {
+	int *arr = malloc(sizeof(int) * SIZE);
+	if (arr == NULL) {
 		ptr = NULL;
 	};
 	for (int i = 0; i < SIZE; i++) {
-		(*ptr)[i] = i + 2;
+		arr[i] = i + 2;
 	}
+	*ptr = arr;
 }
 
 
