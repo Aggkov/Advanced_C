@@ -4,26 +4,36 @@
 
 #define SIZE 5
 
-void createArray(int** ptr);
+void createArrayByRef(int** ptr);
+void createArrayByRefV2(int** ptr);
 void printArr(int arr[], int size);
 
 int main() {
 	int* array = NULL;
-	createArray(&array);
-	array[0] = 1;
-	array[1] = 2;
-	array[2] = 3;
-	array[3] = 4;
-	array[4] = 5;
+	createArrayByRefV2(&array);
 	printArr(array, SIZE);
 	free(array);
 	return 0;
 }
 
-void createArray(int** ptr) {
-	int* arr = malloc(sizeof(int) * SIZE);
-	if (arr == NULL) return NULL;
-	return *ptr = arr;
+void createArrayByRefV2(int** ptr) {
+	*ptr = malloc(sizeof(int) * SIZE);
+	if (ptr == NULL) {
+		ptr = NULL;
+	};
+	for (int i = 0; i < SIZE; i++) {
+		(*ptr)[i] = i + 2;
+	}
+}
+
+void createArrayByRef(int** ptr) {
+	*ptr = malloc(sizeof(int) * SIZE);
+	if (ptr == NULL) {
+		ptr = NULL;
+	};
+	for (int i = 0; i < SIZE; i++) {
+		(*ptr)[i] = i + 2;
+	}
 }
 
 
